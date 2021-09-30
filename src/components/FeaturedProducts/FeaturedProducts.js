@@ -37,7 +37,6 @@ export default function FeaturedProducts(props) {
         for (let i = array.length-1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
-            console.log('test');
         };
 
         return array;
@@ -81,7 +80,7 @@ export default function FeaturedProducts(props) {
             <Products className='my-3'>
                 {displayProducts}
             </Products>
-            <Link to='/shop'>
+            <Link to='/shop' className="d-block col-4 col-md-2 mx-auto">
                 <StyledPseudoLink>{props.link}</StyledPseudoLink>
             </Link>
         </Wrapper>

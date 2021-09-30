@@ -23,6 +23,7 @@ export default function LoginForm(props) {
   const [lastName, setLastName] = useState('');
 	const [isLoginDisabled, setIsLoginDisabled] = useState(true);
 	const [isSignUpDisabled, setIsSignUpDisabled] = useState(true);
+  const [isError, setIsError] = useState('');
 
   useEffect(() => {
 
@@ -44,6 +45,7 @@ export default function LoginForm(props) {
     setPassword('');
     setFirstName('');
     setLastName('');
+    setIsError('');
   };
 
   const toSignup = () => {
@@ -71,17 +73,15 @@ export default function LoginForm(props) {
   const fetchSignup = (e) => {
 
 		e.preventDefault();
-
-    setEmail('');
-    setPassword('');
+    clearFormState();
     
     fetch(CHECK_EMAIL_URL, {...defaultOptions, body: JSON.stringify({email})})
     .then(data => data.json())
     .then(data => data
-        ? alert('email already exists')
+        ? setIsError('Email address already exists!')
         : fetch(SIGNUP_URL, {...defaultOptions, body: JSON.stringify({email, password, firstName, lastName})})
             .then(data => data.json())
-            .then(data => data ? setIsRegistered(true) : alert('error occured')));
+            .then(data => data ? setIsRegistered(true) : setIsError('Error signing up.')));
   };
 
   const fetchLogin = (e) => {
@@ -91,11 +91,13 @@ export default function LoginForm(props) {
     fetch(LOGIN_URL, {...defaultOptions, body: JSON.stringify({email, password})})
       .then(data => data.json())
       .then(data => {
-        
-        if (typeof data !== undefined) {
+
+        if (!data.error) {
           
           localStorage.setItem('token', data.access);
           userDetails(data.access);
+        } else {
+          setIsError('Error logging in.');
         }
       });
 
@@ -130,7 +132,7 @@ export default function LoginForm(props) {
       <Form.Group>
         <StyledInput 
           type="password" 
-          placeholder="Password" 
+          placeholder="Password (must not be shorter than 8 characters)" 
           value={password}
           onChange={(e) => setPassword(e.target.value)} 
         />
@@ -159,6 +161,8 @@ export default function LoginForm(props) {
           Close
         </StyledSecondaryButton>
       </div>
+
+      <StyledGuide className='mt-4'>{isError}</StyledGuide>
 
       <StyledGuide className='mt-4'>
         Already registered?
@@ -194,6 +198,8 @@ export default function LoginForm(props) {
           Close
         </StyledSecondaryButton>
       </div>
+
+      <StyledGuide className='mt-4'>{isError}</StyledGuide>
 
       <StyledGuide className='mt-4'>
         Not yet registered?
