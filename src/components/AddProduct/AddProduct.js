@@ -62,16 +62,11 @@ export default function AddProduct(props) {
             }
         })
         .then(data => data.json())
-        .then(data => console.log(data));
-
-        props.setToggler(!props.toggler);
-        setName('');
-        setPrice('');
-        setArtist('');
-        setDescription('');
-        setInventory('');
-        setImage('');
-        setImageURL('');
+        .then(data => {
+            
+            props.fetchAllProducts();
+            handleModalClose();
+        });
     };
   
     return (

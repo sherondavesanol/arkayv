@@ -10,8 +10,7 @@ export default function Home() {
             <h2>Welcome to admin view!</h2>
 
             <h3 className='mt-4'>Status:</h3>
-            <p className='m-0'>[TO FIX] Products tab - Archive/Restore button works but not re-rendering dom.</p>
-            <p className='m-0'>Products tab - Everything else is working.</p>
+            <p className='m-0'>Products tab - Everything is working.</p>
             <p className='m-0'>Users tab - work in progress.</p>
             <p className='m-0'>Orders tab - work in progress.</p>
             <p className='m-0'>[USER] Cart tab - work in progress.</p>
@@ -47,6 +46,7 @@ export default function Home() {
             <p className='m-0'>09/30/2021 - Updated "Delete Product" UI with Styled Components.</p>
             <p className='m-0'>09/30/2021 - Deployed back-end in Heroku.</p>
             <p className='m-0'>09/30/2021 - Deployed front-end in Vercel.</p>
+            <p className='m-0'>09/30/2021 - Fixed bug failing to re-render DOM.</p>
         </>
     )
 }

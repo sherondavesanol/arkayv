@@ -43,7 +43,7 @@ export default function ProductsTable(props) {
     };
 
     const rows = [];
-    const {productsData, archiveToggle, deleteProduct, toggler, setToggler} = props;
+    const {productsData, archiveToggle, deleteProduct, fetchAllProducts} = props;
 
     productsData.map((product, index) => 
 
@@ -318,11 +318,10 @@ export default function ProductsTable(props) {
             </TableBody>
           </Table>
           <UpdateProduct 
+              fetchAllProducts={fetchAllProducts}
               isModalOpen={modal}
               hideModal={hideModal}
               productId={productId}
-              toggler={toggler}
-              setToggler={setToggler}
           />
         </TableContainer>
         <TablePagination

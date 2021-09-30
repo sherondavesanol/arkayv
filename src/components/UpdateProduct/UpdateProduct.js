@@ -91,16 +91,11 @@ export default function UpdateProduct(props) {
             }
         })
         .then(data => data.json())
-        .then(data => data);
-
-        props.setToggler(!props.toggler);
-        setName('');
-        setPrice('');
-        setArtist('');
-        setDescription('');
-        setInventory('');
-        setImage('');
-        setImageURL('');
+        .then(data => {
+            
+            props.fetchAllProducts();
+            handleModalClose();
+        });
     };
   
     return (

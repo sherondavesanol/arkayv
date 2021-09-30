@@ -43,7 +43,6 @@ export default function AdminProducts() {
     const showModal = () => setModal(true);
     const hideModal = () => setModal(false);
 
-    const [toggler, setToggler] = useState(false);
     const [productsArray, setProductsArray] = useState([]);
 
     const fetchAllProducts = () => {
@@ -65,7 +64,7 @@ export default function AdminProducts() {
                     body: JSON.stringify({id: productId})
                 })
                 .then(data => data.json())
-                .then(data => data)
+                .then(data => fetchAllProducts())
             : 
                 fetch(RESTORE_PRODUCT_URL, {
                     method: "PUT",
@@ -76,12 +75,10 @@ export default function AdminProducts() {
                     body: JSON.stringify({id: productId})
                 })
                 .then(data => data.json())
-                .then(data => data);
+                .then(data => fetchAllProducts());
     };
 
     const deleteProduct = (productId) => {
-
-        setToggler(!toggler);
 
         fetch(DELETE_PRODUCT_URL, {
             method: "DELETE",
@@ -91,11 +88,13 @@ export default function AdminProducts() {
             },
             body: JSON.stringify({id: productId})
         })
+        .then(data => data.json())
+        .then(data => fetchAllProducts())
     };
 
     useEffect(() => {
         fetchAllProducts();
-    }, [token, toggler]);
+    }, [token]);
     
     return (
         <>  
@@ -105,8 +104,7 @@ export default function AdminProducts() {
             <AddProduct 
                 isModalOpen={modal}
                 hideModal={hideModal}
-                toggler={toggler}
-                setToggler={setToggler}
+                fetchAllProducts={fetchAllProducts}
             />
             <ProductsTable 
                 isModalOpen={modal}
@@ -114,8 +112,7 @@ export default function AdminProducts() {
                 productsData={productsArray}
                 archiveToggle={archiveToggle}
                 deleteProduct={deleteProduct}
-                toggler={toggler}
-                setToggler={setToggler}
+                fetchAllProducts={fetchAllProducts}
             />
         </>
     )
