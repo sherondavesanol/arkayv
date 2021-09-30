@@ -10,7 +10,8 @@ export default function Home() {
             <h2>Welcome to admin view!</h2>
 
             <h3 className='mt-4'>Status:</h3>
-            <p className='m-0'>Products tab - All product functions are working.</p>
+            <p className='m-0'>[TO FIX] Products tab - Archive/Restore button works but not re-rendering dom.</p>
+            <p className='m-0'>Products tab - Everything else is working.</p>
             <p className='m-0'>Users tab - work in progress.</p>
             <p className='m-0'>Orders tab - work in progress.</p>
             <p className='m-0'>[USER] Cart tab - work in progress.</p>

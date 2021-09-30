@@ -54,8 +54,6 @@ export default function AdminProducts() {
 
     const archiveToggle = (productId, isActive) => {
 
-        setToggler(!toggler);
-
         isActive
             ? 
                 fetch(ARCHIVE_PRODUCT_URL, {

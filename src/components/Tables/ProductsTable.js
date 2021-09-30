@@ -47,23 +47,23 @@ export default function ProductsTable(props) {
 
     productsData.map((product, index) => 
 
-        rows.push({
-            id: index,
-            productId: product._id,
-            name: product.name,
-            price: product.price,
-            artist: product.artist,
-            image: product.image,
-            description: product.description,
-            inventory: product.inventory,
-            isActive: product.isActive,
-            status: product.isActive 
-              ? 'Archive'
-              : 'Restore',
-            buttonVariant: product.isActive 
-              ? 'danger' 
-              : 'restore'
-        })
+      rows.push({
+          id: index,
+          productId: product._id,
+          name: product.name,
+          price: product.price,
+          artist: product.artist,
+          image: product.image,
+          description: product.description,
+          inventory: product.inventory,
+          isActive: product.isActive,
+          status: product.isActive 
+            ? 'Archive'
+            : 'Restore',
+          buttonVariant: product.isActive 
+            ? 'danger' 
+            : 'restore'
+      })
     );
   
     const headCells = [
