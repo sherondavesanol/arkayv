@@ -1,9 +1,6 @@
 // React
 import { useState, useEffect } from "react";
 
-// Bootstrap
-import Button from "react-bootstrap/Button";
-
 // Styled Component
 import styled from 'styled-components';
 

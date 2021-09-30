@@ -27,7 +27,7 @@ export default function Navbar() {
     const linksArray = user.id === null
         ? ['shop', 'login']
         : user.isAdmin === true
-            ? ['products', 'users', 'statistics', 'orders', 'logout']
+            ? ['products', 'users', 'orders', 'logout']
             : ['shop', 'cart', 'wishlist', 'profile', 'logout'] 
 
     const links = linksArray.map((pathname, index) => {

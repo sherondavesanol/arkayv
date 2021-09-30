@@ -12,8 +12,11 @@ export default function Home() {
             <h3 className='mt-4'>Status:</h3>
             <p className='m-0'>Products tab - All product functions are working.</p>
             <p className='m-0'>Users tab - work in progress.</p>
-            <p className='m-0'>Statistics tab - work in progress.</p>
             <p className='m-0'>Orders tab - work in progress.</p>
+            <p className='m-0'>[USER] Cart tab - work in progress.</p>
+            <p className='m-0'>[USER] Wishlist tab - work in progress.</p>
+            <p className='m-0'>[USER] Profile tab - work in progress.</p>
+            <p className='m-0'>Checkout function - work in progress.</p>
             
             <h3 className='mt-4'>Logs:</h3>
             <p className='m-0'>09/28/2021 - Created admin view.</p>

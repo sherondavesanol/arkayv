@@ -13,6 +13,7 @@ export default function Home() {
     return (
         <>
             <LoginForm />
+            <p className='my-2'>Admin Credentials: admin@test.com admin123</p>
             <Header 
                 textStart='Your go-to marketplace for'
                 highlightedText='designer toys'
