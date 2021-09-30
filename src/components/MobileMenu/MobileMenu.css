@@ -1,0 +1,28 @@
+.nav-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 55px);
+    width: 100%;
+    top: 55px;
+    left: -100%;
+    transition: 0.3s ease-in-out;
+    background-color: var(--white);
+}
+
+.nav-menu.active {
+    left: 0;
+}
+
+.nav-links-mobile {
+    display: block;
+    padding: 1rem;
+    margin: 0 auto;
+    color: var(--medGrey);
+}
+
+.nav-links-mobile:hover {
+    background: var(--secondary);
+    color: var(--white);
+    transition: 0.3s ease-in-out;
+}
