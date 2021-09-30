@@ -47,6 +47,7 @@ export default function Home() {
             <p className='m-0'>09/30/2021 - Deployed back-end in Heroku.</p>
             <p className='m-0'>09/30/2021 - Deployed front-end in Vercel.</p>
             <p className='m-0'>09/30/2021 - Fixed bug failing to re-render DOM.</p>
+            <p className='m-0'>09/30/2021 - Added content loader components.</p>
         </>
     )
 }

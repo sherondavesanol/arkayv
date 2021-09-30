@@ -10,6 +10,7 @@ import ProductsTable from "../components/Tables/ProductsTable";
 
 // API
 import { GET_ALL_PRODUCTS_URL, ARCHIVE_PRODUCT_URL, RESTORE_PRODUCT_URL, DELETE_PRODUCT_URL } from '../API';
+import { TableContentLoader } from "../components/ContentLoader/TableContentLoader";
 
 const StyledButton = styled.button`
 
@@ -44,11 +45,18 @@ export default function AdminProducts() {
     const hideModal = () => setModal(false);
 
     const [productsArray, setProductsArray] = useState([]);
+    const [isLoading, setIsLoading] = useState('');
 
     const fetchAllProducts = () => {
+
+        setIsLoading(true);
+
         fetch(GET_ALL_PRODUCTS_URL, {headers: {'Authorization': `Bearer ${token}`}})
         .then(data => data.json())
-        .then(data => setProductsArray(data));
+        .then(data => {
+            setProductsArray(data);
+            setIsLoading(false);
+        });
     };
 
     const archiveToggle = (productId, isActive) => {
@@ -95,23 +103,29 @@ export default function AdminProducts() {
     useEffect(() => {
         fetchAllProducts();
     }, [token]);
+
+    const displayTable = isLoading
+                            ?
+                                <TableContentLoader />
+                            :
+                                <ProductsTable 
+                                    isModalOpen={modal}
+                                    hideModal={hideModal}
+                                    productsData={productsArray}
+                                    archiveToggle={archiveToggle}
+                                    deleteProduct={deleteProduct}
+                                    fetchAllProducts={fetchAllProducts}
+                                />
     
     return (
         <>  
             <h3>You are currently at products view as an admin.</h3>
             <p>Click the table header cell to sort respective data.</p>
             <StyledButton type='button' onClick={showModal}>CREATE PRODUCT</StyledButton>
+            {displayTable}
             <AddProduct 
                 isModalOpen={modal}
                 hideModal={hideModal}
-                fetchAllProducts={fetchAllProducts}
-            />
-            <ProductsTable 
-                isModalOpen={modal}
-                hideModal={hideModal}
-                productsData={productsArray}
-                archiveToggle={archiveToggle}
-                deleteProduct={deleteProduct}
                 fetchAllProducts={fetchAllProducts}
             />
         </>
