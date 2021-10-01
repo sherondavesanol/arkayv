@@ -8,17 +8,105 @@ import { Wrapper, ProductDetails, ProductName, ProductPrice, ProductArtist, Styl
 // Components
 import LoginForm from '../LoginForm/LoginForm';
 
+import { VIEW_CART_URL, VIEW_WISHLIST_URL, defaultOptions  } from '../../API';
+
 export default function ProductCard(props) {
+
+    const token = localStorage.getItem('token');
 
     const {user} = useContext(UserContext);
     const [showLoginForm, setShowLoginForm] = useState(false);
 
+    
+    const addToCart = () => {
+
+        fetch('http://localhost:4000/api/orders/check-cart-items', 
+        {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                productId: props.productId
+            })
+        })
+        .then(data => data.json())
+        .then(data => {
+
+            if (data === false) {
+
+            fetch('http://localhost:4000/api/orders/add-to-cart', 
+            {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    productId: props.productId,
+                    addedOn: Date()
+                })
+            })
+            .then(data => data.json())
+            .then(data => data 
+                ? alert('added to cart')
+                : alert ('fail'))
+
+            } else {
+
+                alert('Item is already added to cart.')
+            };
+        });
+    };
+
+    const addToWishlist = () => {
+
+        fetch('http://localhost:4000/api/orders/check-wishlist-items', 
+        {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                productId: props.productId
+            })
+        })
+        .then(data => data.json())
+        .then(data => {
+
+            if (data === false) {
+
+            fetch('http://localhost:4000/api/orders/add-to-wishlist', 
+            {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    productId: props.productId,
+                    addedOn: Date()
+                })
+            })
+            .then(data => data.json())
+            .then(data => data 
+                ? alert('added to wishlist')
+                : alert ('fail'))
+
+            } else {
+
+                alert('Item is already added to wishlist.')
+            };
+        });
+    };
+
     const handleClose = () => setShowLoginForm(false);
-    const handleAddToCart = () => user.id ? console.log('ADDED TO CART') : setShowLoginForm(true);
-    const handleAddtoWishlist = () => user.id ? console.log('ADDED TO WISHLIST') : setShowLoginForm(true);
+    const handleAddToCart = () => user.id ? addToCart() : setShowLoginForm(true);
+    const handleAddtoWishlist = () => user.id ? addToWishlist() : setShowLoginForm(true);
 
     const price = (props.price).toFixed(2);
-    // const name = (props.name).length > 18 ? (props.name).substring(0, 17) + '...' : props.name;
 
     return(
         <Wrapper className='my-3 col-6 col-md-4'>

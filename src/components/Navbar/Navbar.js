@@ -10,13 +10,11 @@ import { Wrapper, StyledNavbar, StyledHomeLink, StyledNavLinks, StyledIcon } fro
 import MobileMenu from '../MobileMenu/MobileMenu';
 import LoginForm from '../LoginForm/LoginForm';
 
-export default function Navbar() {
+export default function Navbar(props) {
 
     const {user, unsetUser} = useContext(UserContext);
 
     const [mobileMenu, setMobileMenu] = useState(false);
-    const [cartCount, setCartCount] = useState(0);
-    const [wishlistCount, setWishlistCount] = useState(0);
     const [showLoginForm, setShowLoginForm] = useState(false);
 
     const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
@@ -33,9 +31,9 @@ export default function Navbar() {
     const links = linksArray.map((pathname, index) => {
     
         return pathname === 'cart'
-            ? <NavLink to={`/${pathname}`} key={index}>{pathname}({cartCount})</NavLink>
+            ? <NavLink to={`/${pathname}`} key={index}>{pathname}({props.cartCount})</NavLink>
             :  pathname === 'wishlist'
-                ? <NavLink to={`/${pathname}`} key={index}>{pathname}({wishlistCount})</NavLink>
+                ? <NavLink to={`/${pathname}`} key={index}>{pathname}({props.wishlistCount})</NavLink>
                 :  pathname === 'login'
                     ? <NavLink to='#' onClick={handleShow} key={index}>{pathname}</NavLink>
                     : pathname === 'logout'
@@ -49,8 +47,8 @@ export default function Navbar() {
         <StyledNavbar>
             <MobileMenu 
                 linksArray={linksArray} 
-                cartCount={cartCount} 
-                wishlistCount={wishlistCount} 
+                cartCount={props.cartCount} 
+                wishlistCount={props.wishlistCount} 
                 isActive={mobileMenu}
                 closeMobileMenu={closeMobileMenu}
                 showLoginForm={handleShow}

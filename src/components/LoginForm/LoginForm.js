@@ -205,6 +205,7 @@ export default function LoginForm(props) {
         Not yet registered?
         <StyledToggler onClick={toSignup}> Create account</StyledToggler>
       </StyledGuide>
+      <StyledGuide className='mt-4 text-center'>Admin Credentials: admin@test.com admin123</StyledGuide>
     </Form>
   );
 

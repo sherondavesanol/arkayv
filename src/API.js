@@ -1,6 +1,6 @@
 const token = localStorage.getItem('token');
 
-const SERVER_URL = 'https://arkayv-api.herokuapp.com';
+const SERVER_URL = 'http://localhost:4000';
 const BASE_URL_ADMIN = SERVER_URL + '/api/admin';
 const BASE_URL_ORDERS = SERVER_URL + '/api/orders';
 const BASE_URL_PRODUCTS = SERVER_URL + '/api/products';
@@ -19,6 +19,9 @@ export const ARCHIVE_PRODUCT_URL = BASE_URL_PRODUCTS + '/archive-product';
 export const RESTORE_PRODUCT_URL = BASE_URL_PRODUCTS + '/restore-product';
 export const UPDATE_PRODUCT_URL = BASE_URL_PRODUCTS + '/update-product';
 export const DELETE_PRODUCT_URL = BASE_URL_PRODUCTS + '/delete-product';
+
+export const VIEW_CART_URL = BASE_URL_ORDERS + '/view-cart';
+export const VIEW_WISHLIST_URL = BASE_URL_ORDERS + '/view-wishlist';
 
 export const defaultOptions = {
     method: 'POST',

@@ -62,6 +62,7 @@ export default function FeaturedProducts(props) {
                                     
                                         return <ProductCard 
                                                 key={index}
+                                                productId={product._id}
                                                 name={product.name}
                                                 price={product.price}
                                                 artist={product.artist}
