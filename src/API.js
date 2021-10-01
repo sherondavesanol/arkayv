@@ -1,6 +1,6 @@
 const token = localStorage.getItem('token');
 
-const SERVER_URL = 'http://localhost:4000';
+const SERVER_URL = 'https://arkayv-api.herokuapp.com';
 const BASE_URL_ADMIN = SERVER_URL + '/api/admin';
 const BASE_URL_ORDERS = SERVER_URL + '/api/orders';
 const BASE_URL_PRODUCTS = SERVER_URL + '/api/products';

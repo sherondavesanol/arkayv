@@ -20,7 +20,7 @@ export default function ProductCard(props) {
     
     const addToCart = () => {
 
-        fetch('http://localhost:4000/api/orders/check-cart-items', 
+        fetch('https://arkayv-api.herokuapp.com/api/orders/check-cart-items', 
         {
             method: 'POST',
             headers: {
@@ -36,7 +36,7 @@ export default function ProductCard(props) {
 
             if (data === false) {
 
-            fetch('http://localhost:4000/api/orders/add-to-cart', 
+            fetch('https://arkayv-api.herokuapp.com/api/orders/add-to-cart', 
             {
                 method: 'POST',
                 headers: {
@@ -62,7 +62,7 @@ export default function ProductCard(props) {
 
     const addToWishlist = () => {
 
-        fetch('http://localhost:4000/api/orders/check-wishlist-items', 
+        fetch('https://arkayv-api.herokuapp.com/api/orders/check-wishlist-items', 
         {
             method: 'POST',
             headers: {
@@ -78,7 +78,7 @@ export default function ProductCard(props) {
 
             if (data === false) {
 
-            fetch('http://localhost:4000/api/orders/add-to-wishlist', 
+            fetch('https://arkayv-api.herokuapp.com/api/orders/add-to-wishlist', 
             {
                 method: 'POST',
                 headers: {
